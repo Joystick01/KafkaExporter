@@ -17,7 +17,7 @@ public class ConfigurationManager {
             "DATALAKE_PADDING",
             "DATALAKE_PREFIX",
             "KAFKA_TOPICS",
-            "KAFKA_BOOTSTRAP_SERVERS",
+            "BOOTSTRAP_SERVERS_CONFIG",
             "MAX_POLL_RECORDS_CONFIG"
     };
 
