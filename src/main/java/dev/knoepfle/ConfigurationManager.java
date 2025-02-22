@@ -1,9 +1,13 @@
 package dev.knoepfle;
 
+import org.slf4j.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ConfigurationManager {
+
+    private static Logger logger = org.slf4j.LoggerFactory.getLogger(ConfigurationManager.class);
 
     private static ConfigurationManager instance;
     private final Map<String, Object> configuration = new HashMap<>();
@@ -16,6 +20,9 @@ public class ConfigurationManager {
             "DATALAKE_FILE_MESSAGE_COUNT",
             "DATALAKE_PADDING",
             "DATALAKE_PREFIX",
+            "FILEWRITER_PATH",
+            "FILEWRITER_FILE_MESSAGE_COUNT",
+            "FILEWRITER_PADDING",
             "KAFKA_TOPICS",
             "BOOTSTRAP_SERVERS_CONFIG",
             "MAX_POLL_RECORDS_CONFIG"
@@ -26,6 +33,8 @@ public class ConfigurationManager {
             configuration.put(parameter, System.getenv(parameter));
         }
         configuration.putIfAbsent("DATALAKE_PREFIX", "");
+
+        logger.info("Configuration loaded: {}", configuration);
     }
 
     public static synchronized ConfigurationManager getInstance() {

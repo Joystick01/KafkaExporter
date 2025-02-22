@@ -1,5 +1,8 @@
 package dev.knoepfle;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+
 public class ConsoleWriter implements Writer {
 
     String topic;
@@ -9,7 +12,7 @@ public class ConsoleWriter implements Writer {
     }
 
     @Override
-    public void write(String message) {
-        System.out.println("[" + topic + "] " + message);
+    public void write(ConsumerRecord<String, JsonNode> record) {
+        System.out.println("[" + topic + "] " + record.value().toString());
     }
 }
